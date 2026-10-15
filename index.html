@@ -222,7 +222,7 @@
   </div>
 </footer>
 
-<button id="cb-fab" type="button" aria-label="Pflanzen-Assistent öffnen" hidden>💬</button>
+<button id="cb-fab" type="button" aria-label="Pflanzen-Assistent öffnen">💬</button>
 <div id="cb" role="dialog" aria-label="Pflanzen-Assistent">
   <div id="cb-head"><div>Pflanzen-Assistent<small>Frage stellen oder Foto hochladen</small></div><button id="cb-x" type="button" aria-label="Schließen">×</button></div>
   <div id="cb-msgs" aria-live="polite"></div>
@@ -256,9 +256,16 @@
     'Antworte NUR als JSON: {"reply":"...","matchId":"id oder null"}';
   var $ = function (i) { return document.getElementById(i); };
   var sample = null, imgOK = false, file = null, busy = false, turns = [];
+  $('cb-in').disabled = true; $('cb-send').disabled = true;
 
   function el(cls, text) { var d = document.createElement('div'); d.className = 'msg ' + cls; if (text) d.textContent = text; $('cb-msgs').appendChild(d); $('cb-msgs').scrollTop = 1e6; return d; }
-  function open() { $('cb').classList.add('open'); if (!$('cb-msgs').children.length) el('bot', 'Hallo! Ich bin der Pflanzen-Assistent von TM Zierpflanzen. Fragen Sie mich zur Pflege' + (imgOK ? ' oder laden Sie ein Foto hoch, dann sage ich Ihnen, welche Pflanze es ist.' : '.')); $('cb-in').focus(); }
+  function open() {
+    $('cb').classList.add('open');
+    if (!$('cb-msgs').children.length) el('bot', sample
+      ? 'Hallo! Ich bin der Pflanzen-Assistent von TM Zierpflanzen. Fragen Sie mich zur Pflege' + (imgOK ? ' oder laden Sie ein Foto hoch, dann sage ich Ihnen, welche Pflanze es ist.' : '.')
+      : 'Der Pflanzen-Assistent ist in dieser Website-Vorschau nicht verfügbar. Zum Chatten bitte in der unterstützten Claude-Umgebung öffnen.');
+    if (sample) $('cb-in').focus();
+  }
   function clearFile() { file = null; $('cb-file').value = ''; $('cb-prev').classList.remove('on'); }
   function card(parent, id) {
     var p = PL.filter(function (x) { return x.id === id; })[0]; if (!p) return;
@@ -305,11 +312,11 @@
   // Lights up only where the viewer can run Claude; otherwise the chat stays hidden
   try {
     (window.claude && window.claude.use ? window.claude.use('sample') : Promise.resolve(null)).then(async function (s) {
-      if (!s) return; sample = s;
+      if (!s) { $('cb-in').placeholder = 'Assistent hier nicht verfügbar'; return; }
+      sample = s; $('cb-in').disabled = false; $('cb-send').disabled = false;
       try { var l = await s.limits(); if (l && l.images) { imgOK = true; if (l.images.mediaTypes && l.images.mediaTypes.length) $('cb-file').accept = l.images.mediaTypes.join(','); } } catch (e) {}
-      $('cb-fab').hidden = false;
       if (imgOK) { $('cb-cam').hidden = false; $('heroChat').hidden = false; }
-    }).catch(function () {});
+    }).catch(function () { $('cb-in').placeholder = 'Assistent hier nicht verfügbar'; });
   } catch (e) {}
 })();
 </script>
