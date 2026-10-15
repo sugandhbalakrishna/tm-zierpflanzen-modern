@@ -283,7 +283,7 @@
   };
 
   $('cb-fab').onclick = function () { $('cb').classList.contains('open') ? $('cb').classList.remove('open') : open(); };
-  $('heroChat').onclick = open;
+  $('heroChat').onclick = function () { open(); $('cb-file').click(); };
   $('cb-x').onclick = function () { $('cb').classList.remove('open'); };
   $('cb-cam').onclick = function () { $('cb-file').click(); };
   $('cb-rm').onclick = clearFile;
