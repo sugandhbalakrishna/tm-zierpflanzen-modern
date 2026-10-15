@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TM Zierpflanzen – Modern</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    --bg: #F9F9F7; --surface: #FFFFFF; --ink: #0D1A14; --muted: #5A6660; --line: #E0E0E0;
+    --green: #137A5A; --green-ink: #FFFFFF; --accent: #1D9E75; --soft: #E1F5EE; --dark: #0D1A14;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0D1A14; --surface: #12231A; --ink: #E8F1EC; --muted: #9DB3A8; --line: #243A2E;
+      --green: #5DCAA5; --green-ink: #0D1A14; --accent: #5DCAA5; --soft: #173126; --dark: #081410;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0D1A14; --surface: #12231A; --ink: #E8F1EC; --muted: #9DB3A8; --line: #243A2E;
+    --green: #5DCAA5; --green-ink: #0D1A14; --accent: #5DCAA5; --soft: #173126; --dark: #081410;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--sans); }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 22px; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+  header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font: 700 20px var(--serif); text-decoration: none; letter-spacing: -.01em; }
+  .logo span { color: var(--accent); }
+  nav { display: flex; gap: 22px; align-items: center; font-size: 15px; }
+  nav a { text-decoration: none; color: var(--muted); }
+  nav a:hover { color: var(--ink); }
+  .btn { display: inline-block; text-decoration: none; font-weight: 600; font-size: 15px; padding: 12px 22px; border-radius: 999px; background: var(--green); color: var(--green-ink); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  @media (max-width: 640px) { nav a:not(.btn) { display: none; } }
+
+  .hero { padding: 64px 0 40px; display: grid; gap: 36px; grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 860px) { .hero { grid-template-columns: 1.1fr .9fr; padding: 88px 0 56px; } }
+  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin: 0 0 14px; }
+  h1 { font: 700 clamp(38px, 6vw, 68px)/1.04 var(--serif); letter-spacing: -.02em; margin: 0 0 18px; }
+  .lede { font-size: 18px; color: var(--muted); max-width: 46ch; margin: 0 0 28px; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .art { position: relative; aspect-ratio: 1; max-width: 460px; width: 100%; margin-inline: auto; }
+  .art .blob { position: absolute; inset: 0; background: var(--soft); border-radius: 46% 54% 40% 60% / 52% 44% 56% 48%; }
+  .art .pot { position: absolute; inset: 0; display: grid; place-items: center; font-size: clamp(120px, 22vw, 200px); filter: drop-shadow(0 18px 18px rgba(0,0,0,.12)); }
+  .chip { position: absolute; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 500; box-shadow: 0 6px 18px rgba(0,0,0,.07); }
+  .c1 { top: 10%; left: -2%; } .c2 { bottom: 14%; right: -2%; } .c3 { bottom: 4%; left: 8%; }
+
+  section { padding: 56px 0; }
+  h2 { font: 700 clamp(28px, 4vw, 40px)/1.1 var(--serif); letter-spacing: -.015em; margin: 0 0 10px; }
+  .sub { color: var(--muted); max-width: 56ch; margin: 0 0 32px; }
+
+  .grid { display: grid; gap: 14px; }
+  .g5 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+  .g4 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px; text-decoration: none; transition: transform .15s, border-color .15s; }
+  a.card:hover { transform: translateY(-3px); border-color: var(--green); }
+  .ico { width: 52px; height: 52px; border-radius: 14px; background: var(--soft); display: grid; place-items: center; font-size: 28px; margin-bottom: 14px; }
+  .card h3 { margin: 0 0 4px; font: 600 18px var(--sans); }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .arrow { display: inline-block; margin-top: 10px; color: var(--green); font-weight: 600; font-size: 14px; }
+
+  .band { background: var(--dark); color: #fff; border-radius: 28px; padding: 40px 28px; display: grid; gap: 28px; grid-template-columns: 1fr; }
+  @media (min-width: 860px) { .band { grid-template-columns: 1fr 1fr; padding: 56px; gap: 48px; } }
+  .band h2 { color: inherit; }
+  .band p { margin: 0 0 12px; opacity: .88; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start; }
+  .stat { background: rgba(255,255,255,.1); border-radius: 16px; padding: 18px; }
+  .stat b { display: block; font: 700 22px var(--serif); margin-bottom: 4px; }
+  .stat span { font-size: 14px; opacity: .85; }
+
+  .split { display: grid; gap: 32px; grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 860px) { .split { grid-template-columns: 1fr 1fr; gap: 56px; } }
+  .split p { color: var(--muted); }
+  .recycle { background: var(--soft); border-radius: 24px; padding: 32px; }
+  .recycle .big { font-size: 56px; line-height: 1; margin-bottom: 14px; }
+
+  footer { border-top: 1px solid var(--line); margin-top: 24px; padding: 40px 0 48px; color: var(--muted); font-size: 14px; }
+  .foot { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; }
+  .foot a { text-decoration: none; margin-right: 16px; }
+  .foot a:hover { color: var(--ink); }
+  .note { margin-top: 18px; font-size: 13px; }
+  button.btn { font-family: inherit; cursor: pointer; border: 0; }
+  button.btn.ghost { border: 1px solid var(--line); background: transparent; }
+  #cb-fab { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 20; width: 58px; height: 58px; border-radius: 50%; border: 0; background: var(--green); color: var(--green-ink); font-size: 26px; cursor: pointer; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+  #cb { position: fixed; right: 18px; bottom: calc(88px + env(safe-area-inset-bottom, 0px)); z-index: 20; width: min(390px, calc(100vw - 36px)); height: min(580px, calc(100vh - 130px)); display: none; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,.28); }
+  #cb.open { display: flex; }
+  #cb-head { background: var(--dark); color: #fff; padding: 14px 16px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+  #cb-head small { display: block; font-weight: 400; opacity: .7; font-size: 12px; }
+  #cb-x { background: none; border: 0; color: #fff; font-size: 24px; cursor: pointer; line-height: 1; }
+  #cb-msgs { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; }
+  .msg { max-width: 88%; padding: 9px 13px; border-radius: 14px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .msg.bot { background: var(--soft); align-self: flex-start; border-bottom-left-radius: 4px; }
+  .msg.me { background: var(--green); color: var(--green-ink); align-self: flex-end; border-bottom-right-radius: 4px; }
+  .msg img { display: block; max-width: 100%; max-height: 170px; border-radius: 10px; margin-bottom: 6px; }
+  .pcard { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; margin-top: 8px; white-space: normal; color: var(--ink); }
+  .pcard b { display: block; }
+  .pcard span { display: block; color: var(--muted); font-size: 13px; margin: 2px 0 6px; }
+  .pcard a { color: var(--green); font-weight: 600; }
+  #cb-prev { display: none; padding: 8px 12px 0; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+  #cb-prev.on { display: flex; }
+  #cb-prev img { width: 44px; height: 44px; object-fit: cover; border-radius: 8px; }
+  #cb-prev button { border: 0; background: none; color: var(--muted); cursor: pointer; font-size: 16px; }
+  #cb-form { display: flex; gap: 6px; padding: 10px; border-top: 1px solid var(--line); }
+  #cb-in { flex: 1; min-width: 0; font: inherit; font-size: 16px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; }
+  #cb-form button { border: 0; border-radius: 999px; min-width: 42px; height: 42px; cursor: pointer; font-size: 18px; background: var(--soft); color: var(--ink); }
+  #cb-form #cb-send { background: var(--green); color: var(--green-ink); padding: 0 16px; font-size: 14px; font-weight: 600; }
+  #cb-form button:disabled { opacity: .5; cursor: not-allowed; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#">TM <span>Zierpflanzen</span></a>
+    <nav aria-label="Hauptmenü">
+      <a href="#pflege">Pflegetipps</a>
+      <a href="#nachhaltig">Nachhaltigkeit</a>
+      <a href="#kontakt">Kontakt</a>
+      <a class="btn" href="#pflege">Pflanze finden</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow">Gärtnerei aus Mühlhausen</p>
+      <h1>Kreiere wundervolle Plätze.</h1>
+      <p class="lede">Erlebe das kräftigste, gesündeste und langlebigste Grün mit unseren Pflanzen-Pflegetipps – regional gezogen, ganzjährig frisch.</p>
+      <div class="cta">
+        <a class="btn" href="#pflege">Zu den Pflegetipps</a>
+        <a class="btn ghost" href="#nachhaltig">Wie wir arbeiten</a>
+        <button class="btn ghost" id="heroChat" type="button" hidden>📷 Pflanze per Foto erkennen</button>
+      </div>
+    </div>
+    <div class="art" aria-hidden="true">
+      <div class="blob"></div>
+      <div class="pot">🪴</div>
+      <span class="chip c1">☀️ Sonne bis Halbschatten</span>
+      <span class="chip c2">♻️ Töpfe aus Rezyklat</span>
+      <span class="chip c3">📍 Lokal gezogen</span>
+    </div>
+  </div>
+
+  <section id="pflege">
+    <div class="wrap">
+      <h2>Finde die passende Pflanze</h2>
+      <p class="sub">Suche nach dem, was für deinen Platz zählt: Licht, Frost, Wuchs, Lebensdauer oder Standort.</p>
+      <div class="grid g5">
+        <a class="card" href="https://tmzierpflanzen.de/produkt-kategorie/standort/"><div class="ico">☀️</div><h3>Standort</h3><p>Sonne, Halbschatten oder Schatten.</p><span class="arrow">Ansehen →</span></a>
+        <a class="card" href="https://tmzierpflanzen.de/produkt-kategorie/winterhart/"><div class="ico">❄️</div><h3>Winterhart</h3><p>Pflanzen, die Frost vertragen.</p><span class="arrow">Ansehen →</span></a>
+        <a class="card" href="https://tmzierpflanzen.de/produkt-kategorie/wuchsform/"><div class="ico">🌿</div><h3>Wuchsform</h3><p>Stehend, hängend oder kompakt.</p><span class="arrow">Ansehen →</span></a>
+        <a class="card" href="https://tmzierpflanzen.de/produkt-kategorie/lebensdauer/"><div class="ico">⏳</div><h3>Lebensdauer</h3><p>Einjährig oder mehrjährig.</p><span class="arrow">Ansehen →</span></a>
+        <a class="card" href="https://tmzierpflanzen.de/produkt-kategorie/standplatz/"><div class="ico">🏡</div><h3>Standplatz</h3><p>Balkon, Beet, Kübel oder Zimmer.</p><span class="arrow">Ansehen →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="nachhaltig">
+    <div class="wrap">
+      <div class="band">
+        <div>
+          <h2>Gut für Pflanze und Umwelt</h2>
+          <p>Wir produzieren das ganze Jahr über hochwertige lokale Produkte. In unseren Gewächshäusern wachsen Zierpflanzen und Gemüsejungpflanzen unter effizienten Klima- und Temperaturbedingungen.</p>
+          <p>Wir verkaufen lokal, verkürzen den Weg vom Gewächshaus bis zu dir und arbeiten mit torfreduzierten Substraten.</p>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>Weniger Belastung</b><span>Stark reduzierte Umweltbelastung</span></div>
+          <div class="stat"><b>Schonend</b><span>Integrierter Pflanzenschutz</span></div>
+          <div class="stat"><b>Regional</b><span>Lokale Landwirtschaft</span></div>
+          <div class="stat"><b>Kreislauf</b><span>Recycelte Verpackungen</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <div>
+        <h2>Für wahre Pflanzen-Liebhaber</h2>
+        <p>Wir geben uns nicht mit langweiligen Pflanzen zufrieden. Ob Innenraum, kleiner Innenhof oder große Fläche: Pflanzen geben deinem Lieblingsplatz das gewisse Etwas.</p>
+        <p>Unser Ziel ist es, Pflanzen zu züchten, die du unabhängig von Budget und Anforderungen genießen kannst.</p>
+      </div>
+      <div class="recycle">
+        <div class="big">♻️</div>
+        <h3 style="font:600 20px var(--sans);margin:0 0 8px">Pflanztöpfe aus PE-Rezyklat</h3>
+        <p style="margin:0 0 14px">Seit 2021 stellt der TUPAG-Konzern die Pflanztöpfe in der eigenen Produktion auf umweltfreundliches Recyclingmaterial um.</p>
+        <a class="btn ghost" href="https://www.poeppelmann.com/de/teku/pressemitteilung/detail/TM%20Zierpflanzen%20GmbH%20nutzt%20Pflanzt%C3%B6pfe%20Circular360">Zur Pressemitteilung</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="kontakt">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <strong style="color:var(--ink)">TM Zierpflanzen GmbH</strong><br>
+        Industriestraße 24, 99974 Mühlhausen<br>
+        <a href="tel:03601/83000" style="margin:0">Tel: 03601/83000</a> · Fax: 03601/830015
+      </div>
+      <div>
+        <a href="https://www.tmzierpflanzen.de/kontakt/">Kontakt</a>
+        <a href="https://www.tupag.de/karriere">Karriere</a>
+        <a href="https://www.tmzierpflanzen.de/impressum/">Impressum</a>
+        <a href="https://www.tmzierpflanzen.de/datenschutz/">Datenschutz</a>
+      </div>
+    </div>
+    <p class="note">Design-Konzept auf Basis der Inhalte von tmzierpflanzen.de.</p>
+  </div>
+</footer>
+
+<button id="cb-fab" type="button" aria-label="Pflanzen-Assistent öffnen" hidden>💬</button>
+<div id="cb" role="dialog" aria-label="Pflanzen-Assistent">
+  <div id="cb-head"><div>Pflanzen-Assistent<small>Frage stellen oder Foto hochladen</small></div><button id="cb-x" type="button" aria-label="Schließen">×</button></div>
+  <div id="cb-msgs" aria-live="polite"></div>
+  <div id="cb-prev"><img alt=""><span>Foto bereit zum Senden</span><button type="button" id="cb-rm" aria-label="Foto entfernen">✕</button></div>
+  <form id="cb-form">
+    <input id="cb-file" type="file" accept="image/*" hidden>
+    <button type="button" id="cb-cam" aria-label="Foto auswählen" hidden>📷</button>
+    <input id="cb-in" placeholder="Ihre Frage …" autocomplete="off" aria-label="Ihre Frage">
+    <button type="submit" id="cb-send">Senden</button>
+  </form>
+</div>
+
+<script>
+(function () {
+  var PL = [
+    {id:'keyqauam', n:'Ageratum houstonianum / Leberbalsam', s:'Beetpflanze, einjährig, sonnig, lila, mäßig feucht', u:'ageratum-houstonianum-leberbalsam'},
+    {id:'07VP4X39', n:'Anemone / Windröschen', s:'Beetstaude, mehrjährig, Sonne bis Halbschatten, nicht zu feucht', u:'anemone-windroschen'},
+    {id:'VEEDOP4N', n:'Antirrhinum / Löwenmaul', s:'Beet- und Kübelpflanze, einjährig, bunt, ausreichend gießen', u:'anthirrinum-lowenmaul'},
+    {id:'JST34YJT', n:'Asparagus densiflorus / Zierspargel', s:'Zimmer- und Balkonpflanze, grün, gleichmäßig feucht, mehrjährig', u:'asparagus-densiflorus-zierspargel'},
+    {id:'ERTMZCTR', n:'Aster novi belgii / Glattblatt-Aster', s:'Winterhart, mehrjährig, blau/pink/rosa/weiß, regelmäßig gießen', u:'aster-novi-belgii-glattblatt-aster'},
+    {id:'SBWH5FY7', n:'Astilbe / Prachtspiere', s:'Gartenstaude, winterhart, Halbschatten, rosa', u:'astilbe-prachtspiere'},
+    {id:'3FPD9UP4', n:'Asteriscus maritimus / Goldtaler', s:'Balkonpflanze, einjährig, Vollsonne, gelb, wöchentlich düngen', u:'asteriscus-maritimus-goldtaler'},
+    {id:'V7MMNZG5', n:'Bacopa / Schneeflockenblume', s:'Hängend, Balkon, nicht winterhart, feucht halten ohne Staunässe', u:'bacopa-schneeflockenblume'},
+    {id:'EONAT8V5', n:'Begonia elatior / Zimmerbegonie', s:'Zimmerpflanze, hell ohne direkte Sonne, sparsam gießen, bunt', u:'begonia-elatior-zimmerbegoniey'},
+    {id:'TNRDUNOC', n:'Begonia semperflorens / Eisbegonie', s:'Beetpflanze, Sonne bis Schatten, rosa/rot/weiß, alle 2 Wochen düngen', u:'begonia-semperflorens-eisbegonie-kirschbluten'}
+  ];
+  var RULES = 'Du bist der Pflanzen-Assistent von TM Zierpflanzen (Gärtnerei in Mühlhausen). Antworte immer auf Deutsch, freundlich und kurz (höchstens 4 Sätze). ' +
+    'Unser Sortiment zum Abgleich: ' + JSON.stringify(PL.map(function (p) { return {id: p.id, name: p.n, info: p.s}; })) + '. ' +
+    'Wenn ein Foto mitgeschickt wird: bestimme die Pflanze, nenne deine Sicherheit ehrlich und gib kurze Pflege-Tipps (Standort, Gießen, Dünger). Bei Krankheiten oder Schädlingen nenne mögliche Ursachen und einfache Hilfe, ohne Garantie. ' +
+    'Passt die Pflanze zu einer aus dem Sortiment, setze deren id in matchId, sonst null. Fragen, die nichts mit Pflanzen oder TM Zierpflanzen zu tun haben, lehnst du höflich ab. ' +
+    'Antworte NUR als JSON: {"reply":"...","matchId":"id oder null"}';
+  var $ = function (i) { return document.getElementById(i); };
+  var sample = null, imgOK = false, file = null, busy = false, turns = [];
+
+  function el(cls, text) { var d = document.createElement('div'); d.className = 'msg ' + cls; if (text) d.textContent = text; $('cb-msgs').appendChild(d); $('cb-msgs').scrollTop = 1e6; return d; }
+  function open() { $('cb').classList.add('open'); if (!$('cb-msgs').children.length) el('bot', 'Hallo! Ich bin der Pflanzen-Assistent von TM Zierpflanzen. Fragen Sie mich zur Pflege' + (imgOK ? ' oder laden Sie ein Foto hoch, dann sage ich Ihnen, welche Pflanze es ist.' : '.')); $('cb-in').focus(); }
+  function clearFile() { file = null; $('cb-file').value = ''; $('cb-prev').classList.remove('on'); }
+  function card(parent, id) {
+    var p = PL.filter(function (x) { return x.id === id; })[0]; if (!p) return;
+    var c = document.createElement('div'); c.className = 'pcard';
+    var b = document.createElement('b'); b.textContent = p.n; var sp = document.createElement('span'); sp.textContent = p.s;
+    var a = document.createElement('a'); a.href = 'https://www.tmzierpflanzen.de/produkt/' + p.u + '/'; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Zur Produktseite →';
+    c.appendChild(b); c.appendChild(sp); c.appendChild(a); parent.appendChild(c);
+  }
+  var ERR = {
+    rate_limited: 'Gerade zu viele Anfragen. Bitte gleich noch einmal versuchen.',
+    image_rejected: 'Das Foto konnte nicht verwendet werden. Bitte ein anderes Bild (JPG oder PNG) wählen.',
+    not_granted: 'Der Assistent wurde nicht freigegeben.',
+    sampling_disabled: 'Der Assistent ist für dieses Konto nicht verfügbar.',
+    refused: 'Dazu kann ich leider nichts sagen. Fragen Sie mich etwas zu Pflanzen.'
+  };
+
+  $('cb-fab').onclick = function () { $('cb').classList.contains('open') ? $('cb').classList.remove('open') : open(); };
+  $('heroChat').onclick = open;
+  $('cb-x').onclick = function () { $('cb').classList.remove('open'); };
+  $('cb-cam').onclick = function () { $('cb-file').click(); };
+  $('cb-rm').onclick = clearFile;
+  $('cb-file').onchange = function () {
+    file = this.files && this.files[0] || null; if (!file) return;
+    $('cb-prev').querySelector('img').src = URL.createObjectURL(file); $('cb-prev').classList.add('on');
+  };
+  $('cb-form').onsubmit = async function (e) {
+    e.preventDefault(); if (busy || !sample) return;
+    var t = $('cb-in').value.trim(); if (!t && !file) return;
+    var f = file; clearFile(); $('cb-in').value = '';
+    var m = el('me'); if (f) { var im = document.createElement('img'); im.src = URL.createObjectURL(f); im.alt = 'Ihr Foto'; m.appendChild(im); } if (t) m.appendChild(document.createTextNode(t));
+    turns.push({role: 'user', content: t || 'Welche Pflanze ist das? Bitte nenne Pflege-Tipps.'});
+    var w = el('bot', 'Ich schaue nach …'); busy = true; $('cb-send').disabled = true;
+    try {
+      var opts = {cache: false}; if (f) opts.images = [f];
+      var r = await sample.json([{role: 'user', content: RULES}].concat(turns.slice(-7)), opts);
+      w.textContent = r.reply || 'Dazu fällt mir leider nichts ein.'; card(w, r.matchId);
+      turns.push({role: 'assistant', content: r.reply || ''});
+    } catch (err) {
+      turns.pop(); w.textContent = ERR[err && err.code] || 'Das hat leider nicht geklappt. Bitte noch einmal versuchen.';
+    }
+    busy = false; $('cb-send').disabled = false; $('cb-msgs').scrollTop = 1e6;
+  };
+
+  // Lights up only where the viewer can run Claude; otherwise the chat stays hidden
+  try {
+    (window.claude && window.claude.use ? window.claude.use('sample') : Promise.resolve(null)).then(async function (s) {
+      if (!s) return; sample = s;
+      try { var l = await s.limits(); if (l && l.images) { imgOK = true; if (l.images.mediaTypes && l.images.mediaTypes.length) $('cb-file').accept = l.images.mediaTypes.join(','); } } catch (e) {}
+      $('cb-fab').hidden = false;
+      if (imgOK) { $('cb-cam').hidden = false; $('heroChat').hidden = false; }
+    }).catch(function () {});
+  } catch (e) {}
+})();
+</script>
+
+</body>
+</html>
